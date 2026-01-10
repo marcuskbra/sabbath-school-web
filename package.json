@@ -18,7 +18,6 @@
     "test:ci": "vitest run --coverage && playwright test"
   },
   "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "@unhead/vue": "^1.7.4",
     "@videojs-player/vue": "^1.0.0",
     "marked": "9.0.0",
@@ -57,7 +56,6 @@
     "plyr": "^3.7.2",
     "postcss": "^8.4.14",
     "sass": "^1.52.3",
-    "sass-loader": "^13.0.0",
     "tailwindcss": "3.4.13",
     "vite": "^2.9.9",
     "vite-svg-loader": "^3.3.0",
