@@ -29,8 +29,8 @@ yarn test:coverage
 # Open Vitest UI for interactive testing
 yarn test:ui
 
-# Run E2E tests (requires build first)
-yarn build && yarn test:e2e
+# Run E2E tests (auto-builds before running)
+yarn test:e2e
 
 # Run E2E tests with UI
 yarn test:e2e:ui
@@ -40,6 +40,9 @@ yarn test:e2e:headed
 
 # Run full CI test suite
 yarn test:ci
+
+# Install Playwright browsers (required first time)
+yarn playwright install
 ```
 
 ## Testing Stack
