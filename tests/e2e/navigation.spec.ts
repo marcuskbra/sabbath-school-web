@@ -46,32 +46,23 @@ test.describe('Navigation', () => {
     test('should set RTL direction for Arabic', async ({ page }) => {
       await page.goto('/ar')
 
-      // Check that HTML or body has RTL direction
-      const htmlDir = await page.locator('html').getAttribute('dir')
-      const bodyDir = await page.locator('body').getAttribute('dir')
-
-      const isRtl = htmlDir === 'rtl' || bodyDir === 'rtl'
-      expect(isRtl).toBeTruthy()
+      // App sets dir attribute on wrapper div, not html/body
+      const rtlElement = page.locator('[dir="rtl"]')
+      await expect(rtlElement).toBeVisible()
     })
 
     test('should set RTL direction for Hebrew', async ({ page }) => {
       await page.goto('/he')
 
-      const htmlDir = await page.locator('html').getAttribute('dir')
-      const bodyDir = await page.locator('body').getAttribute('dir')
-
-      const isRtl = htmlDir === 'rtl' || bodyDir === 'rtl'
-      expect(isRtl).toBeTruthy()
+      const rtlElement = page.locator('[dir="rtl"]')
+      await expect(rtlElement).toBeVisible()
     })
 
     test('should set RTL direction for Persian', async ({ page }) => {
       await page.goto('/fa')
 
-      const htmlDir = await page.locator('html').getAttribute('dir')
-      const bodyDir = await page.locator('body').getAttribute('dir')
-
-      const isRtl = htmlDir === 'rtl' || bodyDir === 'rtl'
-      expect(isRtl).toBeTruthy()
+      const rtlElement = page.locator('[dir="rtl"]')
+      await expect(rtlElement).toBeVisible()
     })
   })
 

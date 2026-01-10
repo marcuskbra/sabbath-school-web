@@ -83,10 +83,12 @@ export default defineConfig({
 
   // Run your local dev server before starting the tests
   webServer: {
-    command: 'npm run preview',
+    command: 'yarn build && yarn preview',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
-    timeout: 120000
+    timeout: 180000,
+    stdout: 'pipe',
+    stderr: 'pipe'
   },
 
   // Global timeout for each test
