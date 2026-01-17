@@ -205,17 +205,19 @@ test.describe('Content Viewing', () => {
 
       const secondUrl = page.url()
 
-      // Go back
-      await page.goBack()
-      await page.waitForLoadState('networkidle')
+      // Go back - use waitUntil: 'commit' for SPA client-side navigation
+      await page.goBack({ waitUntil: 'commit' })
+      // Wait for Vue Router to complete navigation
+      await page.waitForTimeout(500)
 
       // After going back, should either be at first URL or redirected to home
       const afterBackUrl = page.url()
       const backWorked = afterBackUrl.includes('/en') || afterBackUrl === firstUrl
 
-      // Go forward
-      await page.goForward()
-      await page.waitForLoadState('networkidle')
+      // Go forward - use waitUntil: 'commit' for SPA client-side navigation
+      await page.goForward({ waitUntil: 'commit' })
+      // Wait for Vue Router to complete navigation
+      await page.waitForTimeout(500)
 
       // After going forward, should be at second URL or include /es
       const afterForwardUrl = page.url()
