@@ -20,8 +20,10 @@ export default defineConfig({
   // Retry on CI only
   retries: process.env.CI ? 2 : 0,
 
-  // Opt out of parallel tests on CI
-  workers: process.env.CI ? 1 : undefined,
+  // Number of parallel workers
+  // CI: Use 2 workers per job (each browser runs in separate job)
+  // Local: Use default (half of CPU cores)
+  workers: process.env.CI ? 2 : undefined,
 
   // Reporter to use
   reporter: [
@@ -85,8 +87,10 @@ export default defineConfig({
   ],
 
   // Run your local dev server before starting the tests
+  // In CI, build is pre-built and downloaded as artifact, so just run preview
+  // Locally, build first then preview
   webServer: {
-    command: 'yarn build && yarn preview',
+    command: process.env.CI ? 'yarn preview' : 'yarn build && yarn preview',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
     timeout: 180000,
