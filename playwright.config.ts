@@ -8,6 +8,9 @@ export default defineConfig({
   // Test directory - includes both e2e and a11y tests
   testDir: './tests',
 
+  // Ignore Vitest tests (unit and component tests use Vitest, not Playwright)
+  testIgnore: ['**/unit/**', '**/component/**'],
+
   // Run tests in files in parallel
   fullyParallel: true,
 
